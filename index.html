@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Annu ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+height:100vh;
+background:radial-gradient(circle at top,#04010a,#000);
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-family:cursive;
+}
+
+/* 🌌 MOVING NEON HEART BACKGROUND */
+.neon-bg-heart{
+position:fixed;
+font-size:120px;
+opacity:0.04;
+color:#ff2fa0;
+filter:blur(2px);
+animation:float 25s linear infinite;
+z-index:-3;
+}
+@keyframes float{
+from{transform:translateY(110vh) rotate(0deg)}
+to{transform:translateY(-120vh) rotate(360deg)}
+}
+
+/* BACKGROUND GLOW */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 30%,rgba(255,0,150,0.18),transparent 45%),
+radial-gradient(circle at 80% 70%,rgba(0,180,255,0.15),transparent 50%);
+z-index:-2;
+}
+
+/* BACKGROUND TEXT */
+#bgText{
+position:fixed;
+font-size:90px;
+font-weight:bold;
+letter-spacing:10px;
+color:#ff2fa0;
+text-shadow:0 0 50px #ff2fa0,0 0 120px #ff2fa0;
+opacity:0.07;
+animation:pulse 4s infinite alternate;
+z-index:-1;
+}
+@keyframes pulse{
+from{transform:scale(1)}
+to{transform:scale(1.25)}
+}
+
+/* 🎁 REALISTIC 3D GIFT */
+#giftBox{
+position:absolute;
+width:200px;
+height:150px;
+background:linear-gradient(135deg,#ff006a,#ff5fa2);
+border-radius:14px;
+box-shadow:
+0 20px 40px rgba(0,0,0,0.7),
+0 0 50px #ff2fa0;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+animation:floatGift 3s ease-in-out infinite;
+transform-style:preserve-3d;
+z-index:10;
+overflow:hidden;
+}
+
+/* SHINE EFFECT */
+#giftBox::after{
+content:"";
+position:absolute;
+inset:-50%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent);
+animation:shine 3s infinite;
+}
+@keyframes shine{
+from{transform:translateX(-100%)}
+to{transform:translateX(100%)}
+}
+
+@keyframes floatGift{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-12px)}
+}
+
+/* LID */
+#giftLid{
+position:absolute;
+top:-40px;
+width:220px;
+height:45px;
+background:linear-gradient(135deg,#ff2fa0,#ff8ccf);
+border-radius:14px;
+transform-origin:bottom;
+transition:1s cubic-bezier(.19,1,.22,1);
+box-shadow:0 0 35px #ff69b4;
+}
+
+#giftBox.open #giftLid{
+transform:rotateX(120deg) translateY(-60px);
+opacity:0;
+}
+
+/* HEART RAIN – NEON */
+.heart{
+position:fixed;
+top:-10%;
+pointer-events:none;
+filter:
+drop-shadow(0 0 6px #ff4ecd)
+drop-shadow(0 0 14px #ff4ecd);
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/* CONTENT */
+.container{
+text-align:center;
+z-index:5;
+display:none;
+animation:reveal 1.5s ease;
+}
+@keyframes reveal{
+from{opacity:0;transform:scale(0.75)}
+to{opacity:1;transform:scale(1)}
+}
+
+/* BUTTONS */
+button{
+padding:16px 44px;
+margin:16px;
+border:none;
+border-radius:50px;
+font-size:18px;
+cursor:pointer;
+background:linear-gradient(45deg,#ff0080,#ff8c00);
+color:white;
+box-shadow:0 0 45px #ff0080;
+transition:0.4s;
+}
+button:hover{
+transform:scale(1.2);
+box-shadow:0 0 80px #ff8c00;
+}
+
+/* LYRICS */
+#lineBox{
+margin-top:40px;
+font-size:34px;
+font-weight:bold;
+display:none;
+text-shadow:
+0 0 25px #ff69b4,
+0 0 70px #ff1493;
+animation:beat 1.3s infinite;
+}
+@keyframes beat{
+0%{transform:scale(1)}
+50%{transform:scale(1.12)}
+100%{transform:scale(1)}
+}
+
+.fade{
+animation:fadeText 0.6s ease;
+}
+@keyframes fadeText{
+from{opacity:0;transform:translateY(25px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* FINAL */
+#final{
+display:none;
+font-size:42px;
+margin-top:30px;
+color:#ff69b4;
+text-shadow:0 0 50px #ff1493;
+animation:pop 2s infinite;
+}
+@keyframes pop{
+0%{transform:scale(1)}
+50%{transform:scale(1.25)}
+100%{transform:scale(1)}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="song" src="sushant.mp3"></audio>
+
+<div id="bgText">FOR ANNU</div>
+
+<!-- floating neon hearts bg -->
+<div class="neon-bg-heart" style="left:10%">❤️</div>
+<div class="neon-bg-heart" style="left:60%;animation-delay:8s">💖</div>
+<div class="neon-bg-heart" style="left:80%;animation-delay:15s">💘</div>
+
+<!-- 🎁 GIFT -->
+<div id="giftBox">
+<div id="giftLid"></div>
+🎁
+</div>
+
+<div class="container" id="content">
+<button id="startBtn">▶ Start</button>
+<button id="chooseBtn" style="display:none;">💖 Choose Me</button>
+<button id="acceptBtn" style="display:none;">💍 Accept My Proposal</button>
+
+<div id="lineBox"></div>
+<div id="final">Forever Yours ❤️</div>
+</div>
+
+<script>
+/* NEON HEART RAIN */
+function createHeart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerText=["❤️","💖","💘","💕","💞"][Math.floor(Math.random()*5)];
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(18+Math.random()*32)+"px";
+h.style.animationDuration=(3+Math.random()*6)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),9000);
+}
+setInterval(createHeart,160);
+
+/* ELEMENTS */
+const gift=document.getElementById("giftBox");
+const content=document.getElementById("content");
+const startBtn=document.getElementById("startBtn");
+const chooseBtn=document.getElementById("chooseBtn");
+const acceptBtn=document.getElementById("acceptBtn");
+const lineBox=document.getElementById("lineBox");
+const song=document.getElementById("song");
+const final=document.getElementById("final");
+
+/* OPEN GIFT */
+gift.onclick=()=>{
+gift.classList.add("open");
+setTimeout(()=>{
+gift.style.display="none";
+content.style.display="block";
+},1100);
+};
+
+/* AUDIO FADE */
+song.volume=0;
+function fadeInAudio(){
+let v=0;
+const f=setInterval(()=>{
+if(v<0.7){v+=0.03;song.volume=v}
+else clearInterval(f);
+},150);
+}
+
+/* FLOW */
+startBtn.onclick=()=>{
+startBtn.style.display="none";
+chooseBtn.style.display="inline-block";
+}
+chooseBtn.onclick=()=>{
+chooseBtn.style.display="none";
+acceptBtn.style.display="inline-block";
+}
+acceptBtn.onclick=()=>{
+acceptBtn.style.display="none";
+song.play();
+fadeInAudio();
+showLyrics();
+}
+
+/* LYRICS */
+const lines=[
+"Zara paas tu mere",
+"Seene se chu jaa mujhe",
+"Kho jau tere pyaar me",
+"Baaho m bhar le mujhe",
+"I love you Annu ♥️",
+"Doremon"
+];
+
+let i=0;
+function showLyrics(){
+lineBox.style.display="block";
+lineBox.classList.remove("fade");
+void lineBox.offsetWidth;
+lineBox.classList.add("fade");
+lineBox.innerText=lines[i];
+i++;
+if(i<lines.length){
+setTimeout(showLyrics,4000);
+}else{
+setTimeout(()=>final.style.display="block",2500);
+}
+}
+</script>
+
+</body>
+</html>
